@@ -11,6 +11,7 @@ namespace ProductCatalogAPI.Data
     {
         public static void Seed(CatalogContext catalogContext)
         {
+            catalogContext.Database.Migrate();
             if (!catalogContext.CatalogBrands.Any())
             {
                 catalogContext.CatalogBrands.AddRange(GetCatalogBrands());
