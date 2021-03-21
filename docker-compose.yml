@@ -1,0 +1,13 @@
+version: '3.4'
+
+networks:
+  frontend:
+  backend:
+
+services:
+  catalog:
+    image: jewels/catalogapi
+    build:
+      context: .\ProductCatalogAPI
+      dockerfile: Dockerfile
+
