@@ -10,4 +10,28 @@ services:
     build:
       context: .\ProductCatalogAPI
       dockerfile: Dockerfile
-
+    environment:
+      ExternalCatalogBaseUrl: http://localhost:7810
+      DatabaseServer: mssqlserver
+      DatabaseName: CatalogDb
+      DatabaseUser: sa
+      DatabasePassword: ProductApi(!)
+    ports:
+      - "7810:80"
+    container_name: jewelscatalogapi
+    networks:
+      - frontend
+      - backend
+    depends_on:
+      - mssqlserver
+  
+  mssqlserver:
+    image: "mcr.microsoft.com/mssql/server:latest"
+    environment:
+      ACCEPT_EULA: Y
+      SA_PASSWORD: ProductApi(!)
+    ports:
+      - "1448:1433"
+    container_name: jewelssqlserver
+    networks:
+      - backend
