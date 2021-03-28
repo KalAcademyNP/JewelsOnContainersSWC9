@@ -24,7 +24,22 @@ services:
       - backend
     depends_on:
       - mssqlserver
-  
+
+  webmvc:
+    image: jewels/webmvc
+    build:
+      context: .\WebMvc
+      dockerfile: Dockerfile
+    environment:
+      CatalogUrl: http://catalog
+    ports:
+      - "7811:80"
+    container_name: webshop
+    networks:
+      - frontend
+    depends_on:
+      - catalog
+
   mssqlserver:
     image: "mcr.microsoft.com/mssql/server:latest"
     environment:
