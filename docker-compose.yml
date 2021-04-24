@@ -60,6 +60,32 @@ services:
       - tokenserver
       - basket.data
 
+  order:
+    build:
+      context: .\OrderApi
+      dockerfile: Dockerfile
+    image: jewels/orderapi
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "200k"
+        max-file: "10"
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      IdentityUrl: http://192.168.1.30:7800
+      DatabaseServer: mssqlserver
+      DatabaseName: OrdersDb
+      DatabaseUser: sa
+      DatabasePassword: ProductApi(!)
+    ports:
+      - "7830:80"
+    container_name: orderapi
+    networks:
+      - backend
+      - frontend
+    depends_on:
+      - mssqlserver
+      - tokenserver
 
   webmvc:
     image: jewels/webmvc
