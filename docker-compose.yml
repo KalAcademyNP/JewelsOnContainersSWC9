@@ -98,6 +98,9 @@ services:
       IdentityUrl: http://192.168.1.30:7800
       CallBackUrl: http://localhost:7811
       CartUrl: http://cart
+      OrderUrl: http://order
+      StripePublicKey: pk_test_jZlpubvlPmcV6QJPReImelQy
+      StripePrivateKey: sk_test_bSHT9qxwjpyCOP0qdAvHLfAA
     ports:
       - "7811:80"
     container_name: webshop
@@ -107,6 +110,7 @@ services:
       - catalog
       - tokenserver
       - cart
+      - order
 
   mssqlserver:
     image: "mcr.microsoft.com/mssql/server:latest"

@@ -63,6 +63,7 @@ namespace OrderApi.Controllers
             return Ok(orders);
         }
 
+        [Route("new")]
         [HttpPost]
         [ProducesResponseType((int)HttpStatusCode.Accepted)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
